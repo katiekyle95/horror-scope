@@ -27,7 +27,7 @@ function Nav() {
           <div className="menu">
             <div>
               <div className="links"> 
-                <button type="button" className="nav-button">SEARCH</button>
+                <button type="button"  className="nav-button">SEARCH</button>
                 <LogIn />
                 <a href="/" className="to-pop-now">POPULAR NOW</a>
                 <div className="social">
@@ -43,7 +43,7 @@ function Nav() {
     )
 }
 
-function Header() {
+function Header(props) {
     
     return (
         <React.Fragment>
@@ -60,7 +60,7 @@ function Header() {
                 </div>
                 <div className="nav-space">
                     <LogIn/>
-                    <button type="button" className="nav-button">SEARCH</button>
+                    <button type="button" onClick={props.onSearch} className="nav-button">SEARCH</button>
                 </div>
             </div>
             
