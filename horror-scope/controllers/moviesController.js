@@ -102,7 +102,7 @@ module.exports = {
                 } else {
                     var totalPages = response.data.total_pages;
                     if (page == totalPages || page == MAX_SEARCH_PAGES) {
-                        DONE = TRUE;
+                        done = true;
                     } else {
                         page++;
                     }

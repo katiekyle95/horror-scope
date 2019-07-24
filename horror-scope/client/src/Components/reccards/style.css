@@ -1,0 +1,28 @@
+.card-space {
+    
+    width: 20%;
+    height: auto;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    
+    margin: 10px;
+    justify-content: center;
+}
+
+.card-space a:hover {
+    opacity: .75;
+}
+
+.rec-poster {
+    max-height: 165px;
+    width: auto;
+}
+
+.rec-name {
+    font-size: 16px;
+    color: black;
+    font-family: "roboto";
+    padding-top: 10px;
+    
+}

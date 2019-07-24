@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({
     extended: true
 }));
-app.use(expredd.json());
+app.use(express.json());
 
 // Serve up static assets 
 

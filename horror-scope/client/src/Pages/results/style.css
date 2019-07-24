@@ -1,0 +1,34 @@
+body {
+    background-color: black;
+}
+
+* {
+    background: none;
+}
+
+.results-here {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.loadHere {
+    text-align: center;
+}
+
+
+.search-title {
+    color: white;
+    font-family: 'roboto';
+    font-size: 16px;
+    padding: 15px;
+    text-align: center;
+}
+
+#no-results {
+    color: white;
+    font-family: 'roboto';
+    font-size: 18px;
+    text-align: center;
+    padding: 25px;
+}

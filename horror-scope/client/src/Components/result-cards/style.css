@@ -1,0 +1,142 @@
+.card {
+    background-color: white;
+    width: 80%;
+    border: 1px solid black;
+    margin: 20px auto;
+    display: flex;
+    font-family: "roboto";
+    
+}
+
+.result-poster {
+    padding: 20px;
+    height: 250px;
+    width: auto;
+}
+
+
+
+.card a {
+    text-decoration: none;
+    color: black;
+    font-size: 30px;
+}
+
+.card a:hover {
+    color: grey;
+}
+
+.card-title h2 {
+    color: grey;
+    font-size: 20px;
+    margin: 0px;
+    margin-left: 15px;
+}
+
+.card-text {
+    background-color: white;
+    width: 100%;
+    text-align: left;
+    margin-right: 15px;  
+}
+
+.card-title {
+    display: flex;
+    margin: 10px;
+    margin-top: 15px;
+    align-items: baseline;
+}
+
+.card-text h3, p {
+    margin-right: 15px;
+    font-size: 16px;
+}
+
+.card-ratings {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 10px;
+}
+
+.rating h3 {
+    font-size: 16px;
+    
+}
+
+.rating h2 {
+    color: black;
+    margin: 0px;
+    font-weight: lighter;
+    padding: 5px;
+} 
+
+.rating img {
+    height: 20px;
+    width: 20px;
+    margin-right: 3px;
+}
+
+.rating {
+    width: 25%;
+}
+
+.movie-overview {
+    font-size: 16px;  
+}
+
+
+
+.spacer {
+    height: 10px;
+}
+
+.add-buttons {
+    
+    text-align: center;
+    
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.add-buttons button {
+    background: black;
+    color: white;
+    border: 1px solid black;
+    font-family: "roboto";
+    font-size: 16px;
+    padding: 10px;
+    width: 40%;
+    margin: 0px 20px;
+}
+
+.add-buttons button:hover {
+    background-color: white;
+    color: black;
+
+}
+
+@media only screen and (max-width: 600px) {
+
+.result-poster {
+    float: none;
+    width: auto;
+    height: 300px;
+    margin: 0px auto;
+}
+
+.card {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-ratings {
+    visibility: hidden;
+}
+
+}
+

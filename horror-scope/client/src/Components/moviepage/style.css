@@ -1,0 +1,216 @@
+
+.all {
+    width: 85%;
+    min-width: 380px;
+    background-color: black;
+    margin: 20px auto;
+}
+
+.page {
+    background-color: white;
+    width: 80%;
+    border: 1px solid black;
+    font-family: "roboto";
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: -2px;
+    
+    
+}
+
+.top-info {
+    display: flex;
+}
+
+.page h1 {
+    margin: 0px;
+    color: black;
+    font-size: 35px;
+}
+
+#year {
+    margin: 10px;
+}
+
+.page-poster {
+    height: 425px;
+    width: auto;
+    float: left;
+    padding: 20px;
+}
+
+.page h2 {
+    color: grey;
+    font-size: 25px;
+    margin-left: 15px;
+}
+
+.movie-text {
+    background-color: white;
+    width: 100%;
+    text-align: left;
+    padding: 0px;
+}
+
+.movie-title {
+    display: flex;
+    margin-top: 15px;
+    align-items: baseline;
+}
+
+.movie-details {
+    margin: 0px;
+}
+
+.movie-ratings {
+    height: 80px;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.movie-ratings h3 {
+    font-size: 16px;
+    margin-bottom: 0px;
+}
+
+.movie-ratings h2 {
+    color: black;
+    margin-top: 8px;
+    font-weight: lighter;
+}
+
+.q-rating, .e-rating, .s-rating {
+    text-align: center;
+}
+
+.full-ratings h3 {
+    margin-top: 5px;
+}
+
+.full-ratings h2 {
+    margin-bottom: 5px;
+}
+
+.full-ratings img {
+    height: 25px;
+    width: 25px;
+    margin-right: 3px;
+}
+
+.movie-details {
+    margin: 0px;
+    text-align: left;
+}
+
+.single-line {
+    display: flex;
+    align-items: baseline;
+}
+
+.page-overview {
+    display: flex;
+    flex-direction: column;
+    margin-right: 14px;
+    margin-bottom: 20px;
+}
+
+.single-line h3, p {
+    font-size: 18px;
+    margin: 6px;
+}
+
+.page-overview h3, p {
+    font-size: 18px;
+    margin: 6px;
+    margin-bottom: 0px;
+}
+
+.add-full-buttons {
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.add-full-buttons button {
+    background: black;
+    color: white;
+    border: 1px solid black;
+    font-family: "roboto";
+    font-size: 16px;
+    padding: 10px;
+    width: 40%;
+    margin-bottom: 20px;
+}
+
+.add-full-buttons button:hover {
+    background-color: white;
+    color: black;
+
+}
+
+#separator {
+    border: 1.5px solid black;
+    width: 90%;
+    margin: 20px auto;
+    margin-top: 0px;
+}
+
+.user-rate {
+    background-color: white;
+    width: 100%;
+    border: 1px solid black;
+    padding-top: 2px;
+    font-family: "roboto";
+    margin-bottom: 0px;
+    bottom: 4px;
+    position: inherit;
+}
+
+.user-rate-content {
+    margin: 15px;
+    
+    margin-top: 0px;
+    justify-content: space-evenly;
+    display: flex;
+}
+
+.user-rate-content h2 {
+    margin: 0px;
+    font-family: "roboto";
+}
+
+.rating-label {
+  text-align: center;
+  width: 130px;
+  margin-bottom: 10px;
+}
+
+.rating-label h3 {
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+.rate-this-movie {
+    justify-content: center;
+    display: flex;   
+    
+}
+
+#rate-this {
+    font-family: "roboto";
+    margin-top: 10px;
+    padding-bottom: 4px;
+    margin-bottom: 0px;
+    border-bottom: 2px solid black;
+    color: black; 
+    font-size: 24px;
+}
+
+.recommended-here {
+    display: flex; 
+    align-items: flex-start;
+    margin-top: 15px;
+    margin-bottom: 15px
+}

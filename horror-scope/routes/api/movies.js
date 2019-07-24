@@ -1,10 +1,10 @@
 const router = require("express").Router();
-const movieController = require("../../controllers/moviesController");
+const moviesController = require("../../controllers/moviesController");
 const reviewController = require ("../../controllers/reviewController");
 
 // Matches with "/api/movies"
 router.route("/")
-    .get(movieController.discover)
+    .get(moviesController.discover)
 
 // Matches with "/api/movies/search/:name"
 router.route("/search/:name")
@@ -13,7 +13,7 @@ router.route("/search/:name")
 // Matches with "/api/movies/:id"
 router
     .route("/:id")
-    .post(moviesController.details)
+    .get(moviesController.details)
 
 // Matches with "/api/movies/review"
 router
