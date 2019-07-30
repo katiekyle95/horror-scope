@@ -45,11 +45,13 @@
     border-bottom: 1px solid rgba(88, 88, 88, 0.404);
   }
   
-  .nav-button, .to-pop-now {
+  .nav-button, .nav-button a, .to-pop-now {
     color: white;
+    padding: 10px 0px;
     text-decoration: none;
     font-size: 16px;
-    padding: 10px 0px;
+    display: flex;
+    align-items: center;
     position: relative;
     background: none;
     border: none;
@@ -83,6 +85,8 @@
     transform: scaleX(1);
     text-decoration: none;
   }
+
+  
   
   .moblogo {
       text-align: center;

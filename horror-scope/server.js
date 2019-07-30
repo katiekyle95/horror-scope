@@ -18,6 +18,18 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 }
 
+app.post('/login', function (req, res) {
+    var user_name = req.body.userName;
+    var password = req.body.password;
+    userController.auth(req, res);
+  });
+  
+  app.post('/signup', function (req, res) {
+    var user_name = req.body.userName;
+    var password = req.body.password;
+    userController.signUp(req, res);
+  });
+
 // Add routes
 app.use(routes);
 

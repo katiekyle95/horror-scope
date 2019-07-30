@@ -6,6 +6,7 @@ import API from "../../Utils/API";
 import "./style.css";
 import { List, ListItem } from "../../Components/List";
 import Loading from "./loading.gif";
+import Loginbox from "../../Components/LogInForms";
 
 function ResultContainer(props) {
     if ( props.isSearching ) {
@@ -48,6 +49,8 @@ class Results extends Component {
         movies: [],
         isSearching: false,
         searchName: "",
+        isLog: false,
+        isSignUp: false,
     };
 
     handleOnSearch = (event) => {
@@ -56,6 +59,30 @@ class Results extends Component {
 
     handleOnClose = (event) => {
         this.setState ({ isOpen: false })
+    };
+
+    handleOnSign = (event) => {
+        this.setState ({ isSignUp: true })
+    };
+
+    handleOnLogIn = (event) => {
+        this.setState ({ isSignUp: false})
+    };
+
+    handleOnShowLog = (event) => {
+        this.setState ({ isLog: true })
+        
+    };
+    
+    handleOnHideLog = (event) => {
+        this.setState ({ isLog: false })
+    };
+    
+    handleOnUserLoggedIn = (userName) => {
+        this.props.onLogin(userName);
+        this.setState ({ isLog: false })
+        this.forceUpdate();
+        
     };
 
     async componentDidMount() {
@@ -72,12 +99,30 @@ class Results extends Component {
         }
     }
 
+    getUserData = async () =>
+        {
+            try {
+            var userRes = await API.getUser( this.props.userName );
+            this.setState( {watched: userRes.data.watched, wanted: userRes.data.wanted });
+            }
+            catch (err)
+            {
+            console.log( err.message );
+            }
+        }
+
   render() {
+
+    var {userName, isLoggedIn} = this.props;
 
     return (
         <React.Fragment>
             <Header 
                 onSearch={this.handleOnSearch}
+                onShowLog={this.handleOnShowLog}
+                isLoggedIn={this.props.isLoggedIn}
+                userName={this.props.userName}
+                isLog={this.state.isLog}
                 />
             <Search 
                 isOpen={this.state.isOpen} 
@@ -88,6 +133,15 @@ class Results extends Component {
                 isSearching={this.state.isSearching}
                 searchName={this.state.searchName}
                 />
+            <Loginbox
+                handleOnLogIn={this.handleOnLogIn} 
+                handleOnShowLog={this.handleOnShowLog}
+                handleOnHideLog={this.handleOnHideLog}
+                handleOnSign={this.handleOnSign}
+                isSignUp={this.state.isSignUp}
+                isLog={this.state.isLog}
+                onUserLoggedIn={this.handleOnUserLoggedIn}
+            />
         </React.Fragment>
     );
   };

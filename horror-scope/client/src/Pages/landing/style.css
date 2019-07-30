@@ -4,12 +4,9 @@
 
 .results-here {
     background-color: black;
-    
     width: 80%;
-    
     margin: 10px auto;
-    text-align: center;
-    
+    text-align: center; 
 }
 
 .results-here h2 {

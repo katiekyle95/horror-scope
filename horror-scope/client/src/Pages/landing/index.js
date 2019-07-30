@@ -6,6 +6,7 @@ import Loading from "./../results/loading.gif";
 import { List, ListItem } from "../../Components/List";
 import ResultCard from "./../../Components/result-cards";
 import API from "./../../Utils/API";
+import Loginbox from "../../Components/LogInForms";
 
 function ResultContainer(props) {
     if ( props.isSearching )
@@ -51,12 +52,14 @@ class Landing extends Component {
         isOpen: false,
         isSearching: false,
         movies: [],
+        isLog: false,
+        isSignUp: false,
+        
     };
 
     async componentDidMount() {
         var searchName = this.props.match.params.name;
         this.setState({ isSearching: true, searchName: searchName,} );
-    
     
         try {
           var res = await API.movieDiscover();
@@ -78,6 +81,18 @@ class Landing extends Component {
     
       }
 
+      getUserData = async () =>
+        {
+            try {
+            var userRes = await API.getUser( this.props.userName );
+            this.setState( {watched: userRes.data.watched, wanted: userRes.data.wanted });
+            }
+            catch (err)
+            {
+            console.log( err.message );
+            }
+        }
+
     handleOnSearch = (event) => {
         this.setState ({ isOpen: true })
     };
@@ -86,18 +101,85 @@ class Landing extends Component {
         this.setState ({ isOpen: false })
     };
 
+    handleOnSign = (event) => {
+        this.setState ({ isSignUp: true })
+    };
 
+    handleOnLogIn = (event) => {
+        this.setState ({ isSignUp: false})
+    };
+
+    handleOnShowLog = (event) => {
+        this.setState ({ isLog: true })
+        
+    };
+    
+    handleOnHideLog = (event) => {
+        this.setState ({ isLog: false })
+    };
+    
+    handleOnUserLoggedIn = (userName) => {
+        this.props.onLogin(userName);
+        this.setState ({ isLog: false })
+        this.forceUpdate();
+        
+    };
+
+    handleOnWatched = async (movieId) => {
+        var isWatched = ( this.state.watched.indexOf( movieId ) != -1 );
+        if ( isWatched )
+        {
+          await API.clear( this.props.userName, movieId );
+        } else {
+          await API.addWatched( this.props.userName, movieId );
+        }
+        this.getUserData();
+    };
+
+    handleOnWanted = async (movieId) => {
+        var isWanted = ( this.state.wanted.indexOf( movieId ) != -1 ); 
+        if ( isWanted )
+        {
+          await API.clear( this.props.userName, movieId );
+        } else {
+          await API.addWanted( this.props.userName, movieId );
+        }
+        this.getUserData();
+    };
+    
 
   render() {
 
+    var {userName, isLoggedIn} = this.props;
+
+    console.log(isLoggedIn);
+
     return (
         <React.Fragment>
-            <Header onSearch={this.handleOnSearch}/>
-            <Search isOpen={this.state.isOpen} onClose={this.handleOnClose}/>
-        <ResultContainer
-            movies={this.state.movies}
-            isSearching={this.state.isSearching}
-        />
+            <Header 
+                onSearch={this.handleOnSearch}
+                onShowLog={this.handleOnShowLog}
+                isLoggedIn={this.props.isLoggedIn}
+                userName={this.props.userName}
+                isLog={this.state.isLog}
+            />
+            <Search 
+                isOpen={this.state.isOpen} 
+                onClose={this.handleOnClose}
+            />
+            <ResultContainer
+                movies={this.state.movies}
+                isSearching={this.state.isSearching}
+            />
+            <Loginbox 
+                handleOnLogIn={this.handleOnLogIn} 
+                handleOnShowLog={this.handleOnShowLog}
+                handleOnHideLog={this.handleOnHideLog}
+                handleOnSign={this.handleOnSign}
+                isSignUp={this.state.isSignUp}
+                isLog={this.state.isLog}
+                onUserLoggedIn={this.handleOnUserLoggedIn}   
+            />
         </React.Fragment>
         
     );
