@@ -1,6 +1,5 @@
 const axios = require("axios");
 const db = require("../models");
-
 const HORROR_GENRE = 27;
 const THRILLER_GENRE = 53;
 const MAX_SEARCH_RESULTS = 40;
@@ -30,7 +29,7 @@ module.exports = {
                 var avgS = 0;
                 if (reviews.length > 0) {
                     for (var reviewIndex = 0; reviewIndex < reviews.length; reviewIndex++) {
-                        const review = review[reviewIndex];
+                        const review = reviews[reviewIndex];
                         avgQ += review.quality;
                         avgE += review.entertainment;
                         avgS += review.scariness;

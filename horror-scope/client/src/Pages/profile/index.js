@@ -10,44 +10,59 @@ class Profile extends Component {
     state = {
         isOpen: false,
         isSearching: false,
-        movies: [],
+        watchedIds: [],
+        wantedIds: [],
+        watchedMovies: [],
+        wantedMovies: [],
+        dataRetrieved: false,
     };
 
-    async componentDidMount() {
-        var searchName = this.props.match.params.name;
-        this.setState({ isSearching: true, searchName: searchName,} );
-    
-        try {
-          var res = await API.movieDiscover();
-          this.setState({ movies: res.data, isSearching: false })
-        }
-        catch (err)
-        {
-          console.log( err.message );
-        }
-        
-        try {
-          var userRes = await API.getUser( this.props.userName );
-          this.setState( {watched: userRes.data.watched, wanted: userRes.data.wanted });
-        }
-        catch (err)
-        {
-          console.log( err.message );
-        }
-    
-      };
+    componentDidMount() {
+    }
 
-    getUserData = async () =>
-       {
-           try {
-           var userRes = await API.getUser( this.props.userName );
-           this.setState( {watched: userRes.data.watched, wanted: userRes.data.wanted });
-           }
-           catch (err)
-           {
-           console.log( err.message );
-            }
-       };
+    async getData() {
+      try {
+        this.updateCount = 0;
+        var userRes = await API.getUser( this.props.userName );
+        this.setState( {dataRetrieved: true, watchedIds: userRes.data.watched, wantedIds: userRes.data.wanted} );
+      }
+      catch (err)
+      {
+        console.log( err.message );
+      }
+
+      var updateCount = 0;
+      while (updateCount < this.state.watchedIds.length )
+      {
+        var watchedRes = await API.movieDetails( this.state.watchedIds[updateCount] );
+        var movie = watchedRes.data;
+        var movieData = {
+          id: movie.id,
+          title: movie.title,
+          poster_path: movie.poster_path,
+        }
+        var movieList = [...this.state.watchedMovies];
+        movieList.push( movieData );
+        this.setState( { watchedMovies: movieList  } );
+        updateCount++;
+      }
+
+      updateCount = 0;
+      while (updateCount < this.state.wantedIds.length )
+      {
+        var wantedRes = await API.movieDetails( this.state.wantedIds[updateCount] );
+        var movie = wantedRes.data;
+        var movieData = {
+          id: movie.id,
+          title: movie.title,
+          poster_path: movie.poster_path,
+        }
+        var movieList = [...this.state.wantedMovies];
+        movieList.push( movieData );
+        this.setState( { wantedMovies: movieList  } );
+        updateCount++;
+      }
+    };
 
     handleOnSearch = (event) => {
         this.setState ({ isOpen: true })
@@ -83,6 +98,11 @@ class Profile extends Component {
 
         var {userName, isLoggedIn} = this.props;
 
+        if ( isLoggedIn && this.state.dataRetrieved == false )
+        {
+          this.getData();
+        }
+
         return (
             <React.Fragment>
                 <Header
@@ -91,8 +111,14 @@ class Profile extends Component {
                     isLoggedIn={this.props.isLoggedIn}
                     userName={this.props.userName}
                 />
+                <Search
+                  isOpen={this.state.isOpen}
+                  onClose={this.handleOnClose}
+                />
                 <ProfilePage
                     userName={this.props.userName}
+                    watched={this.state.watchedMovies}
+                    wanted={this.state.wantedMovies}
                 />
             </React.Fragment>
         )

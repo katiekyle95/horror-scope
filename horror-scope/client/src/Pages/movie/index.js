@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Header from "../../Components/header";
 import Search from "../../Components/search";
-import ResultCard from "../../Components/result-cards";
 import API from "../../Utils/API";
 import "./style.css";
-import { List, ListItem } from "../../Components/List";
 import MoviePage from "../../Components/moviepage";
 import Loginbox from "../../Components/LogInForms";
+
+
 
 class Movies extends Component {
 
@@ -16,6 +16,8 @@ class Movies extends Component {
         isSearching: false,
         isLog: false,
         isSignUp: false,
+        watched: false,
+        wanted: false,
     };
 
     componentDidMount() {
@@ -30,21 +32,12 @@ class Movies extends Component {
     {
         var res = await API.movieDetails(movieId);
         var movie = res.data;
-        this.setState({ movie: movie, isSearching: false })
+        this.setState({ movie: movie, isSearching: false });
+        var userRes = await API.getUser( this.props.userName );
+        var watched = ( userRes.data.watched.indexOf( movie.id ) != -1 );
+        var wanted = ( userRes.data.wanted.indexOf( movie.id ) != -1 );
+        this.setState( {watched: watched, wanted: wanted });
     }
-
-    getUserData = async () =>
-        {
-            try {
-            var userRes = await API.getUser( this.props.userName );
-            this.setState( {watched: userRes.data.watched, wanted: userRes.data.wanted });
-            }
-            catch (err)
-            {
-            console.log( err.message );
-            }
-        }
-
 
     handleOnSearch = (event) => {
         this.setState ({ isOpen: true })
@@ -73,16 +66,69 @@ class Movies extends Component {
     
     handleOnUserLoggedIn = (userName) => {
         this.props.onLogin(userName);
-        this.setState ({ isLog: false })
-        this.forceUpdate();
+        
         
     };
+
+    handleUpdateReview = async (qual, ent, scare) => {
+        var {movie} = this.state;
+        movie.userQ = qual;
+        movie.userE = ent;
+        movie.userS = scare;
+        var movieId = movie.id;
+        var userName = this.props.userName;
+        await API.movieAddReview( userName, movieId, qual, ent, scare, "" );
+        var res = await API.movieDetails(movieId);
+        this.setState({ movie: res.data });
+    }
+
+    handleWatched = () => {
+        if (this.state.watched)
+        {
+            this.setState( { watched: false } );
+            API.clear( this.props.userName, this.state.movie.id );
+        } else {
+            this.setState( { watched: true, wanted: false } );
+            API.addWatched( this.props.userName, this.state.movie.id );
+        }
+    }
+
+    handleWanted = () => {
+        if (this.state.wanted)
+        {
+            this.setState( { wanted: false } );
+            API.clear( this.props.userName, this.state.movie.id );
+        } else {
+            this.setState( { wanted: true, watched: false } );
+            API.addWanted( this.props.userName, this.state.movie.id );
+        }
+    }
 
 
   render() {
       
     var {movie} = this.state;
     var {userName, isLoggedIn} = this.props;
+
+    if ( movie.revies != undefined )
+    {
+        var { reviews } = movie;
+        var userQ = 1;
+        var userE = 1;
+        var userS = 1;
+        for ( var i = 0; i < reviews.length; i++ )
+        {
+            if ( reviews[i].userName == userName )
+            {
+                userQ = reviews[i].quality;
+                userE = reviews[i].entertainment;
+                userS = reviews[i].scariness;
+            }
+        }
+        movie.userQ = userQ;
+        movie.userE = userE;
+        movie.userS = userS;
+    }
 
     return (
         <React.Fragment>
@@ -97,6 +143,12 @@ class Movies extends Component {
             <MoviePage
                 movie={movie}
                 isSearching={this.state.isSearching}
+                isLoggedIn={this.props.isLoggedIn}
+                onUpdateReview={this.handleUpdateReview}
+                onWatched={this.handleWatched}
+                onWanted={this.handleWanted}
+                isWatched={this.state.watched}
+                isWanted={this.state.wanted}
             />
             <Loginbox
                handleOnLogIn={this.handleOnLogIn} 

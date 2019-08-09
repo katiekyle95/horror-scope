@@ -1,5 +1,5 @@
 .log-container {
-    background-color: pink;
+    background-color: rgba(0, 0, 0, 0.85);
     position: fixed;
     width: 100%;
     height: 100vh;
@@ -9,3 +9,78 @@
     color: white;
     z-index: 1;
 }
+
+hr {
+    width: 80%;
+    border: none;
+    border-bottom: 1px solid rgba(129, 129, 129, 0.781);
+}
+
+.box {
+    font-family: "roboto";
+    width: 400px;
+    margin: 60px auto;
+    border: 1px solid rgba(129, 129, 129, 0.781);
+    color: white;
+    background-color: black;
+}
+
+.closelog {
+    background: none;
+    border: none;
+    padding: 20px;
+    margin-left: 82%;
+}
+
+.closelog img {
+    height: 25px;
+    width: auto;
+}
+
+.formbox {
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+h4 {
+    margin: 15px;
+    margin-left: -40%;
+}
+
+input {
+    font-size: 16px;
+    padding: 10px;
+    width: 60%;
+    background-color: black;
+    border: 1px solid rgba(129, 129, 129, 0.781);
+    margin: 0px auto;
+    text-align: center;
+    color: white;
+}
+
+.buttonshere {
+    display: flex;
+}
+
+.logingo, .logbutton {
+    margin: 20px auto;
+    padding: 10px;
+    background-color: black;
+    border: 1px solid rgba(129, 129, 129, 0.3);
+    color: white;
+    font-size: 16px;
+    position: relative;
+    width: 50%;
+}
+
+.logingo:hover, .logbutton:hover {
+    color: black;
+    background-color: white;
+}
+
+h5 {
+    margin-bottom: 0px;
+    font-family: arial;
+}
+
+

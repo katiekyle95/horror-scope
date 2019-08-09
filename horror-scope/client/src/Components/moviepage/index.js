@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import "./style.css";
 import Star from './../result-cards/star.png';
 import StarRatingComponent from 'react-star-rating-component';
-import { realpathSync } from 'fs';
 import RecCard from './../reccards';
 
 
 function StarQual(props) {
-    return (
+    let status = "";
+
+    let rateIsLogged = (
         <div className="rating-label">
             <h3>Quality: </h3>
             <StarRatingComponent
@@ -21,10 +22,24 @@ function StarQual(props) {
             />
         </div>
     )
+    
+    if (! props.isLoggedIn) {
+        status = null;
+    } else {
+        status = rateIsLogged;
+    }
+
+    return (
+        <div>
+            {status}
+        </div>    
+    )
 }
 
 function StarEnt(props) {
-    return (
+    let status = "";
+
+    let rateIsLogged = (
         <div className="rating-label">
             <h3>Entertainment: </h3>
             <StarRatingComponent
@@ -38,10 +53,24 @@ function StarEnt(props) {
             />
         </div>
     )
+
+    if (! props.isLoggedIn) {
+        status = null;
+    } else {
+        status = rateIsLogged;
+    }
+
+    return (
+        <div>
+            {status}
+        </div>
+    )
 }
 
 function StarScare(props) {
-    return (
+    let status = "";
+
+    let rateIsLogged = (
         <div className="rating-label">
             <h3>Scariness: </h3>
             <StarRatingComponent
@@ -55,6 +84,18 @@ function StarScare(props) {
             />
         </div>
     )
+
+    if (! props.isLoggedIn) {
+        status = null;
+    } else {
+        status = rateIsLogged;
+    }
+
+    return (
+        <div>
+            {status}
+        </div>
+    )
 }
 
 function AddButtons(props) {
@@ -66,77 +107,105 @@ function AddButtons(props) {
     }
 
     var wantedStyle = {opacity:'1'};
-    if ( props.isWatched )
+    if ( props.isWanted )
     {
-        watchedStyle = {opacity:'0.5'};
+        wantedStyle = {opacity:'0.5'};
     }
 
-    return (
-        
+    let status = "";
+
+    let addLogged = (
         <div className="add-full-buttons">
             <button className="add-watched" style={watchedStyle} onClick={props.onWatched}>Watched</button>
-            <button className="add-to-watch"style={wantedStyle} onClick={props.onWanted}>To Watch</button>
+            <button className="add-to-watch" style={wantedStyle} onClick={props.onWanted}>To Watch</button>
+        </div> 
+    ) 
+
+    let addNot = (
+        <div className="add-full-buttons">
+            <h4 id="log-in-to">Log in to rate this movie and add it to your lists.</h4>
         </div>
-        )  
+    )
+
+    if (! props.isLoggedIn) {
+        status = addNot;
+    } else {
+        status = addLogged;
+    }
+    return (
+        <div>
+            {status}   
+        </div>
+            
+    )  
 
 }
 
-function Ratings(props) {
-    return (
-        <div className="user-ratings">
-                            <AddButtons/>
-                            <hr id="separator"></hr>
-                            <div className="rate-this-movie">
-                                <h2 id="rate-this">Rate this Movie</h2>
-                            </div>
-                            <div className="user-rate-content">
-                                <StarQual
-                                // starRating={this.userQ} onStarClick={this.handleOnStarClick}
-                                />
-                                <StarEnt 
-                                // starRating={this.userE} onStarClick={this.handleOnStarClick}
-                                />
-                                <StarScare 
-                                // starRating={this.userS} onStarClick={this.handleOnStarClick}
-                                />
-                            </div>
-                            
-                            
-                        </div>
-    )
+function ReviewTitle(props) {
+     let status = "";
+
+     let titleIsLogged = (
+        <React.Fragment>
+        <hr id="separator"></hr> 
+        <div className="rate-this-movie">
+            <h2 id="rate-this">Rate this Movie</h2>
+        </div>
+        </React.Fragment>
+     )
+
+     if (! props.isLoggedIn) {
+         status = null;
+     } else {
+         status = titleIsLogged;
+     }
+
+     return (
+         <div>
+             {status}
+         </div>
+     )
+
 }
 
 class MoviePage extends Component {
 
-    // userQ = 1;
-    // userE = 1;
-    // userS = 1;
+    userQ = 1;
+    userE = 1;
+    userS = 1;
     
-    // handleOnStrClick = (nextValue, prevValue, name) => {
-    //     switch( name )
-    //     {
-    //         case 'qualityRating':
-    //         this.userQ = nextValue;
-    //         break;
+    handleOnStarClick = (nextValue, prevValue, name) => {
+        switch( name )
+        {
+            case 'qualityRating':
+            this.userQ = nextValue;
+            break;
 
-    //         case 'entertainmentRating':
-    //         this.userE = nextValue;
-    //         break;
+            case 'entertainmentRating':
+            this.userE = nextValue;
+            break;
 
-    //         case 'scareRating':
-    //         this.userS = nextValue;
-    //         break;
-    //     }
-    //     this.updateReview();
-    // }
+            case 'scareRating':
+            this.userS = nextValue;
+            break;
+        }
+        this.updateReview();
+    }
 
-    // updateReview = () => {
-    //     this.props.onUpdateReview(this.userQ, this.userE, this.userS);
-    // }
+    updateReview = () => {
+        this.props.onUpdateReview(this.userQ, this.userE, this.userS);
+    }
+
+    handleOnWatched = () => {
+        this.props.onWatched();
+    }
+
+    handleOnWanted = () => {
+        this.props.onWanted();
+    }
 
     render() {
-        var {movie} = this.props;
         
+        var {movie} = this.props;
         if ( movie.title === undefined )
         {
             return (
@@ -151,9 +220,9 @@ class MoviePage extends Component {
         var posterImg = 'http://image.tmdb.org/t/p/w342' + poster_path;
         var {original_language} = movie;
 
-        // this.userQ = movie.userQ;
-        // this.userE = movie.userE;
-        // this.userS= movie.userS;
+        this.userQ = movie.userQ;
+        this.userE = movie.userE;
+        this.userS= movie.userS;
 
         var language;
         switch ( original_language )
@@ -205,15 +274,15 @@ class MoviePage extends Component {
                                 <div className="movie-ratings">
                                     <div className="q-rating">
                                         <h3>Quality:</h3>
-                                        <h2><img src={Star}></img><span className="quality-average"></span></h2>
+                                        <h2><img src={Star}></img><span className="quality-average">{movie.averageQuality}</span></h2>
                                     </div>   
                                     <div className="e-rating"> 
                                         <h3>Entertainment:</h3>
-                                        <h2><img src={Star}></img><span className="ent-average"></span></h2>
+                                        <h2><img src={Star}></img><span className="ent-average">{movie.averageEntertainment}</span></h2>
                                     </div> 
                                     <div className="s-rating">   
                                         <h3>Scariness:</h3>
-                                        <h2><img src={Star}></img><span className="scariness-average"></span></h2>
+                                        <h2><img src={Star}></img><span className="scariness-average">{movie.averageScariness}</span></h2>
                                     </div>
                                 </div>    
                                 <div className="movie-details">
@@ -233,7 +302,35 @@ class MoviePage extends Component {
                             
                             </div> 
                         </div>
-                        <Ratings />
+                        
+                            <AddButtons
+                                isLoggedIn = {this.props.isLoggedIn}
+                                onWatched={this.handleOnWatched}
+                                onWanted={this.handleOnWanted}
+                                isWatched={isWatched}
+                                isWanted={isWanted}
+                            />    
+                            <ReviewTitle
+                                isLoggedIn = {this.props.isLoggedIn}
+                            />
+                            <div className="user-rate-content">
+                                <StarQual
+                                    isLoggedIn = {this.props.isLoggedIn}
+                                    starRating={this.userQ}
+                                    onStarClick={this.handleOnStarClick} 
+                                />
+                                <StarEnt
+                                    isLoggedIn = {this.props.isLoggedIn} 
+                                    starRating={this.userE}
+                                    onStarClick={this.handleOnStarClick}
+                                />
+                                <StarScare
+                                    isLoggedIn = {this.props.isLoggedIn} 
+                                    starRating={this.userS}
+                                    onStarClick={this.handleOnStarClick}
+                                />
+                            </div>
+
                         <hr id="separator"></hr>
                         <div className="rate-this-movie">
                                 <h2 id="rate-this">Recommended Movies</h2>

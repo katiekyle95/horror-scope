@@ -34,6 +34,7 @@ function ResultContainer(props) {
                       wanted={props.wanted}
                       onWatched={props.onWatched}
                       onWanted={props.onWanted}
+                      isLoggedIn={props.isLoggedIn}
                     />
                   </ListItem>
                 ))}
@@ -52,9 +53,11 @@ class Landing extends Component {
         isOpen: false,
         isSearching: false,
         movies: [],
+        searchName: "",
         isLog: false,
         isSignUp: false,
-        
+        watched: [],
+        wanted: [],
     };
 
     async componentDidMount() {
@@ -170,6 +173,12 @@ class Landing extends Component {
             <ResultContainer
                 movies={this.state.movies}
                 isSearching={this.state.isSearching}
+                searchName={this.state.searchName}
+                isLoggedIn={this.props.isLoggedIn}
+                watched={this.state.watched}
+                wanted={this.state.wanted}
+                onWatched={this.handleOnWatched}
+                onWanted={this.handleOnWanted}
             />
             <Loginbox 
                 handleOnLogIn={this.handleOnLogIn} 

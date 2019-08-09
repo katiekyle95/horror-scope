@@ -157,6 +157,13 @@
     margin-top: 0px;
 }
 
+#log-in-to {
+    text-align: center;
+    margin: 8px;
+    font-size: 18px;
+    color: #808080;
+}
+
 .user-rate {
     background-color: white;
     width: 100%;

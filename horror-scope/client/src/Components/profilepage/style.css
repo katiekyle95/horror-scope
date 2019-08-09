@@ -1,0 +1,64 @@
+body {
+    text-align: center;
+}
+
+#prof-title {
+    padding-top: 30px;
+    text-align: center;
+}
+
+.scrolling-wrapper-flexbox {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-x: auto;
+    border: 2px solid black;
+    width: 80%;
+    margin: 15px auto;
+    height: 250px;
+    text-align: center;
+}
+
+.scroll-card {
+    flex: 0 0 auto;
+    width: 25%;
+}
+
+.watched-card-space {
+    width: 20%;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin: 15px;
+    justify-content: center;
+}
+
+.watched-card-space a {
+    text-decoration: none;
+}
+
+.watched-card-space a:hover {
+    opacity: .75
+}
+
+.watched-name {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.watched-poster {
+    max-height: 165px;
+    width: auto;
+}
+
+#spacer {
+    height: 20px;
+}
+
+.watched-div, .wanted-div {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    flex-wrap: wrap;
+}

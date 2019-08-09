@@ -1,8 +1,49 @@
 import React, { Component } from 'react';
 import "./style.css";
 import Star from "./star.png";
-import StarRatingComponent from 'react-star-rating-component';
 
+function AddButtons(props) {
+
+    var watchedStyle = {opacity:'1'};
+    if ( props.isWatched )
+    {
+        watchedStyle = {opacity:'0.5'};
+    }
+
+    var wantedStyle = {opacity:'1'};
+    if ( props.isWanted )
+    {
+        wantedStyle = {opacity:'0.5'};
+    }
+
+    let status = "";
+
+    let addLogged = (
+        <div className="add-full-buttons">
+            <button className="add-watched" style={watchedStyle} onClick={props.onWatched}>Watched</button>
+            <button className="add-to-watch" style={wantedStyle} onClick={props.onWanted}>To Watch</button>
+        </div> 
+    ) 
+
+    let addNot = (
+        <div className="add-not-logged">
+            <h4 id="log-to-add">Log in to add this movie to your lists.</h4>
+        </div>
+    )
+
+    if (! props.isLoggedIn) {
+        status = addNot;
+    } else {
+        status = addLogged;
+    }
+    return (
+        <div>
+            {status}   
+        </div>
+            
+    )  
+
+}
 
 class ResultCard extends Component {
    
@@ -23,22 +64,22 @@ class ResultCard extends Component {
         
         var {id, title, overview, release_date, poster_path} =  this.props.movie;
         var year = release_date.substring(0,4);
-        var posterImg = 'http://image.tmdb.org/t/p/w185' + poster_path;
-        // var {wanted,watched} = this.props;
-        // var isWatched = (watched.indexOf(id) != -1);
-        // var isWanted = (wanted.indexOf(id) != -1);
-        // var watchedStyle = {opacity: '1'};
-        // if ( isWatched )
-        // {
-        //         watchedStyle = {opacity: '0.5'};
-        // }
-        // var wantedStyle = {opacity: '1'};
-        // if ( isWanted )
-        // {
-        //         wantedStyle = {opacity: '0.5'};
-        // }
+        var posterImg = 'http://image.tmdb.org/t/p/w185' + poster_path; 
+        var { watched, wanted } =this.props;
+        var isWatched = (watched.indexOf(id) != -1);
+        var isWanted = (wanted.indexOf(id) != -1);
+        var watchedStyle = {opacity: '1'};
+        if ( isWatched )
+        {
+                watchedStyle = {opacity: '0.5'};
+        }
+        var wantedStyle = {opacity: '1'};
+        if ( isWanted )
+        {
+                wantedStyle = {opacity: '0.5'};
+        }
 
-        
+                
         return (
         
             
@@ -71,10 +112,14 @@ class ResultCard extends Component {
                 
                 <p><span className="movie-overview">{overview}</span></p>
                 <div className="spacer"></div>
-                <div className="add-buttons">
-                    <button className="add-watched">Watched</button>
-                    <button className="add-to-watch">To Watch</button>
-                </div>
+                <AddButtons 
+                    isLoggedIn={this.props.isLoggedIn}
+                    onWatched={this.onWatched}
+                    onWanted={this.onWanted}
+                    isWatched={isWatched}
+                    isWanted={isWanted}
+                />
+                
                 
             </div>
         </div>

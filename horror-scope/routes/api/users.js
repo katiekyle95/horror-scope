@@ -10,7 +10,7 @@ router.route("/:name/watched/:movieId")
     .post(userController.watched)
 
 // Matches with "/api/user/:name/wanted/:movieId"
-router.route("/:name/watched/:movieId")
+router.route("/:name/wanted/:movieId")
     .post(userController.wanted)
 
 // Matches with "/api/user/:name/clear/:movieId"

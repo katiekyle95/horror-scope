@@ -9,6 +9,7 @@ import Loading from "./loading.gif";
 import Loginbox from "../../Components/LogInForms";
 
 function ResultContainer(props) {
+    
     if ( props.isSearching ) {
         return ( 
             <div className="results-here">
@@ -26,12 +27,15 @@ function ResultContainer(props) {
         {props.movies.length ? (
             <List>
                 {props.movies.map(movie => (
-                    <ListItem key={movie.id}>
-                        
+                    <ListItem key={movie.id}> 
                         <ResultCard
                             movie={movie}
+                            watched={props.watched}
+                            wanted={props.wanted}
+                            onWatched={props.onWatched}
+                            onWanted={props.onWanted}
+                            isLoggedIn={props.isLoggedIn}
                         />    
-
                     </ListItem>
                 ))}
             </List>
@@ -51,7 +55,44 @@ class Results extends Component {
         searchName: "",
         isLog: false,
         isSignUp: false,
+        watched: [],
+        wanted: [],
     };
+    
+    async componentDidMount() {
+        var searchName = this.props.match.params.name;
+        this.setState({ isSearching: true, searchName: searchName,});
+
+        try {
+            var res= await API.movieSearch(searchName);
+            this.setState({ movies: res.data, isSearching: false })
+        }
+        catch (err)
+        {
+            console.log( err.message );
+        }
+
+        try {
+            var userRes = await API.getUser( this.props.userName );
+            this.setState({watched: userRes.data.watched, wanted: userRes.data.wanted })
+        }
+        catch (err)
+        {
+            console.log( err.message );
+        }
+    }; 
+
+    getUserData = async () =>
+        {
+            try {
+            var userRes = await API.getUser( this.props.userName );
+            this.setState( {watched: userRes.data.watched, wanted: userRes.data.wanted });
+            }
+            catch (err)
+            {
+            console.log( err.message );
+            }
+        }
 
     handleOnSearch = (event) => {
         this.setState ({ isOpen: true })
@@ -78,38 +119,27 @@ class Results extends Component {
         this.setState ({ isLog: false })
     };
     
-    handleOnUserLoggedIn = (userName) => {
-        this.props.onLogin(userName);
-        this.setState ({ isLog: false })
-        this.forceUpdate();
-        
-    };
-
-    async componentDidMount() {
-        var searchName = this.props.match.params.name;
-        this.setState({ isSearching: true, searchName: searchName,});
-
-        try {
-            var res= await API.movieSearch(searchName);
-            this.setState({ movies: res.data, isSearching: false })
-        }
-        catch (err)
+    handleOnWatched = async (movieId) => {
+        var isWatched = ( this.state.watched.indexOf( movieId ) != -1 );
+        if ( isWatched )
         {
-            console.log( err.message );
+          await API.clear( this.props.userName, movieId );
+        } else {
+          await API.addWatched( this.props.userName, movieId );
         }
-    }
+        this.getUserData();
+      }
 
-    getUserData = async () =>
+    handleOnWanted = async (movieId) => {
+        var isWanted = ( this.state.wanted.indexOf( movieId ) != -1 ); 
+        if ( isWanted )
         {
-            try {
-            var userRes = await API.getUser( this.props.userName );
-            this.setState( {watched: userRes.data.watched, wanted: userRes.data.wanted });
-            }
-            catch (err)
-            {
-            console.log( err.message );
-            }
+          await API.clear( this.props.userName, movieId );
+        } else {
+          await API.addWanted( this.props.userName, movieId );
         }
+        this.getUserData();
+      }    
 
   render() {
 
@@ -132,7 +162,12 @@ class Results extends Component {
                 movies={this.state.movies}
                 isSearching={this.state.isSearching}
                 searchName={this.state.searchName}
-                />
+                isLoggedIn={this.props.isLoggedIn}
+                watched={this.state.watched}
+                wanted={this.state.wanted}
+                onWatched={this.handleOnWatched}
+                onWanted={this.handleOnWanted}
+            />
             <Loginbox
                 handleOnLogIn={this.handleOnLogIn} 
                 handleOnShowLog={this.handleOnShowLog}
