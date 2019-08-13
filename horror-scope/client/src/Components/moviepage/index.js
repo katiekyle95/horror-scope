@@ -295,14 +295,15 @@ class MoviePage extends Component {
                                         <p><span className="language">{language}</span></p>
                                     </div>
                                     <div className="page-overview">
-                                        <h3> Overview: </h3>
-                                        <p><span className="overview">{overview}</span></p> 
+                                        <h3 className="over-title"> Overview: </h3>
+                                        <p className="overview">{overview}</p> 
+                                        
                                     </div> 
                                 </div>
                             
                             </div> 
                         </div>
-                        
+                            
                             <AddButtons
                                 isLoggedIn = {this.props.isLoggedIn}
                                 onWatched={this.handleOnWatched}

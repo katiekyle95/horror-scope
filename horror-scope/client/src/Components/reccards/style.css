@@ -1,11 +1,8 @@
 .card-space {
-    
-    width: 20%;
     height: auto;
     display: flex;
     text-align: center;
     flex-direction: column;
-    
     margin: 10px;
     justify-content: center;
 }
@@ -25,4 +22,22 @@
     font-family: "roboto";
     padding-top: 10px;
     
+}
+
+@media only screen and (max-width: 600px) {
+
+.card-space {
+    width: 90px;
+    align-content: flex-start;
+    margin: 5px 15px;
+}    
+
+.rec-name {
+    max-width: 100px;
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 0px;
+}
+
 }

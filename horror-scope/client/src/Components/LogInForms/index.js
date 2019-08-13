@@ -104,6 +104,7 @@ render () {
                     <br></br>
                     
                 <div className="formbox">
+                    <h2>Log In</h2>
                     <h4>Username *</h4>
                     <input type="text" className="username" name="username" value={this.state.userName} onChange={this.onUserNameChanged}></input>
                     <br></br>
@@ -127,7 +128,7 @@ render () {
                     
                     
                     <div className="formbox">
-                    
+                    <h2>Sign Up</h2>
                     <h4>Username *</h4>
                     <input type="text" className="username" name="username" value={this.state.userName} onChange={this.onUserNameChanged}></input>
                     <br></br>

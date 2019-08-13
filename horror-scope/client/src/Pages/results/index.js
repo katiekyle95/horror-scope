@@ -28,7 +28,7 @@ function ResultContainer(props) {
             <List>
                 {props.movies.map(movie => (
                     <ListItem key={movie.id}> 
-                        <ResultCard
+                        <ResultCard 
                             movie={movie}
                             watched={props.watched}
                             wanted={props.wanted}
@@ -177,6 +177,9 @@ class Results extends Component {
                 isLog={this.state.isLog}
                 onUserLoggedIn={this.handleOnUserLoggedIn}
             />
+            <div className="footer-res">
+              <p>&copy; 2019</p>
+            </div>
         </React.Fragment>
     );
   };

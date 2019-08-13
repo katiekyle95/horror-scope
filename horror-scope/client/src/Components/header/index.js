@@ -1,6 +1,6 @@
 import React from 'react';
 import Headerimg from "./horrorscopeheader.png";
-import Headermobile from "./logolong brightest.png";
+import Headermobile from "./horrorscopeheadermobile.png";
 import "./style.css";
 
 function DropButton() {
@@ -29,9 +29,26 @@ function Header(props) {
     return (
         <div className="nav">
           {isMobile() ? (
+            <React.Fragment>
             <div className="mobile-nav">
-              <h1>Beeev</h1>
+                <a href="/"><img className="mobile-logo" src={Headermobile} /></a>
             </div>
+            <div>
+            {props.isLoggedIn ? (
+                <div className="nav-space">
+                    <a href="/profile" className="nav-button">Hello, {user}</a>
+                    <button type="button" onClick={props.onSearch} className="nav-button">SEARCH</button>
+                </div>
+                ) : (
+                <div className="nav-space">
+                    <button type="button" onClick={props.onShowLog} className="nav-button">LOG IN</button>
+                    <button type="button" onClick={props.onSearch} className="nav-button">SEARCH</button>
+                </div> 
+                )
+            }
+            </div>
+            </React.Fragment>
+            
           ) : (
             <div className="desktop-nav">
                 <div className="landing-header">

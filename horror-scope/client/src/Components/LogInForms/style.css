@@ -83,4 +83,37 @@ h5 {
     font-family: arial;
 }
 
+@media only screen and (max-width: 600px) {
+    
+    .log-container {
+        background-color: black;
+    }
+    
+    hr {
+        margin-bottom: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
+    .box {
+        border: none;
+        width: 100%;
+        margin: 0px;
+    }
+
+    .formbox {
+        margin-top: 20%;
+        width: 100%;
+    }
+
+    .closelog {
+        margin-top: 15%;
+        margin-left: 75%;
+    }
+
+    .closelog img {
+        height: 30px;
+        width: auto;
+    }
+
+}

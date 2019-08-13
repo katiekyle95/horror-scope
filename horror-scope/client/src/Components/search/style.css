@@ -37,11 +37,32 @@
 .search-go {
     background: none;
     border: none;
-    
     font-size: 40px;
     padding: 15px;
 }
 
 .search-go:hover, .close-btn:hover {
     opacity: .65;
+}
+
+@media only screen and (max-width: 600px) {
+    .close-btn {
+        margin-top: 25%;
+        height: auto;
+        width: 30px;
+    }
+
+    .close-btn img {
+        height: auto;
+        width: 30px;
+    }
+
+    .search {
+        font-size: 20px;
+        margin-top: 40%;
+    }
+
+    .search-go {
+        font-size: 30px;
+    }
 }

@@ -1,10 +1,17 @@
 body {
-    background-color: black;
+    background-color: black;    
+}
+
+html, body {
+    height: 100%;
 }
 
 * {
     background: none;
+    margin: 0px;
+    padding: 0px;
 }
+
 
 .results-here {
     width: 80%;
@@ -31,4 +38,31 @@ body {
     font-size: 18px;
     text-align: center;
     padding: 25px;
+}
+
+.footer-res p {
+    height: 20px;
+    width: 100%;
+    margin: 0px;
+    margin-top: 10px;
+    color: rgba(255, 255, 255, 0.637);
+    bottom: 0%;
+    font-size: 12px;
+    position: relative;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .results-here {
+        width: 100%;
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+
+    .results-here {
+        width: 100%;
+    }
+
 }

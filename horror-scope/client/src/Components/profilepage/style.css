@@ -24,14 +24,14 @@ body {
 }
 
 .watched-card-space {
-    width: 20%;
+    
     display: flex;
     text-align: center;
     flex-direction: column;
     padding-top: 15px;
     padding-bottom: 15px;
-    margin: 15px;
-    justify-content: center;
+    margin: 10px;
+    justify-content: flex-start;
 }
 
 .watched-card-space a {
@@ -59,6 +59,44 @@ body {
 .watched-div, .wanted-div {
     display: flex;
     align-items: flex-start;
+    justify-content: space-evenly;
     width: 100%;
     flex-wrap: wrap;
+    
+}
+
+@media only screen and (max-width: 600px) {
+
+    .scrolling-wrapper-flexbox {
+        width: 95%;
+        text-align: center;
+    }
+
+    .watched-card-space {
+        margin: 10px, 5px;
+        width: 90px;
+        
+    }
+
+    .watched-poster {
+        width: 100px;
+        
+    }
+
+    .watched-name {
+        text-align: center;
+        width: 90%;
+        display: flex;
+        flex-wrap: wrap;
+        display: inline-block;
+    }
+
+    .watched-div, .wanted-div {
+        justify-content: unset;
+        padding-left: 10px;
+    }
+    
+    #prof-title {
+        font-size: 30px;
+    }
 }

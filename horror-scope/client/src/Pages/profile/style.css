@@ -1,0 +1,9 @@
+.footer p {
+    height: 20px;
+    width: 100%;
+    margin: 0px;
+    margin-top: 10px;
+    color: rgba(255, 255, 255, 0.637);
+    bottom: 0%;
+    font-size: 12px;
+}

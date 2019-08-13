@@ -13,9 +13,7 @@
     font-family: "roboto";
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: -2px;
-    
-    
+    margin-bottom: -2px;  
 }
 
 .top-info {
@@ -109,9 +107,7 @@
     align-items: baseline;
 }
 
-.page-overview {
-    display: flex;
-    flex-direction: column;
+.page-overview {  
     margin-right: 14px;
     margin-bottom: 20px;
 }
@@ -121,7 +117,7 @@
     margin: 6px;
 }
 
-.page-overview h3, p {
+.page-overview h3 {
     font-size: 18px;
     margin: 6px;
     margin-bottom: 0px;
@@ -218,6 +214,65 @@
 .recommended-here {
     display: flex; 
     align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
     margin-top: 15px;
     margin-bottom: 15px
 }
+
+@media only screen and (max-width: 600px) {
+
+    .top-info {
+        display: block;
+    }
+
+    .page-poster {
+        height: 300px;
+        width: auto;
+        float: none;
+    }
+
+    .page {
+        width: 100%;
+    }
+
+    .recommended-here {
+        justify-content: unset;
+    }
+    
+    .movie-title {
+        padding-left: 20px;
+    }
+
+    .movie-ratings  h2{
+        margin-left: 0px !important;
+    }
+
+    .single-line h3 {
+        margin-left: 20px;
+    }
+
+    .page-overview {
+        margin: 0px;
+        display: block;
+        width: 100%;
+        margin-bottom: 25px;
+    }
+
+    .page-overview h3 {
+        margin-left: 20px;
+        width: 60%;
+        margin-right: 0px;
+    }
+
+    .page-overview  p {
+        width: 85%;
+        display: flex;
+        overflow: auto;
+        height: auto;
+        padding-left: 20px;
+        margin-left: 0px;
+        
+    }
+
+} 

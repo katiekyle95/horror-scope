@@ -5,7 +5,6 @@
     margin: 20px auto;
     display: flex;
     font-family: "roboto";
-    
 }
 
 .result-poster {
@@ -83,20 +82,16 @@
 
 .movie-overview {
     font-size: 16px;  
+    visibility: visible;
 }
-
-
 
 .spacer {
     height: 20px;
 }
 
 .add-buttons {
-    
     text-align: center;
-    
     display: flex;
-    
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
@@ -126,9 +121,7 @@
 #log-to-add {
     margin-top: 0px;
     margin-left: 6px;
-    
     color: #808080;
-
 }
 
 @media only screen and (max-width: 600px) {
@@ -136,19 +129,68 @@
 .result-poster {
     float: none;
     width: auto;
-    height: 300px;
+    height: 125px;
+    padding: 10px;
     margin: 0px auto;
 }
 
 .card {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
+    padding: 0px;
 }
 
 .card-ratings {
     visibility: hidden;
+    height: 0px;
 }
 
+.card-title {
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
 }
+
+.movie-overview {
+    visibility: hidden;
+}
+
+p {
+    height: 0px;
+    width: 0px;
+}
+
+.add-buttons {
+    visibility: hidden;
+}
+
+.buttons-here {
+    visibility: hidden;
+    height: 0px;
+    width: 0px;
+}
+
+.spacer {
+    width: 0px;
+    height: 0px;    
+}
+
+.card-text {
+    margin: 0px;
+    width: inherit;
+    background: none;
+}
+
+.card-title h2 {
+    margin: 0px;
+    padding: 0px;
+}
+
+.card a {
+    width: 85%;
+}
+
+
+}
+
+
 

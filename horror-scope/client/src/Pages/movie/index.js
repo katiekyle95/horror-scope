@@ -159,6 +159,9 @@ class Movies extends Component {
                isLog={this.state.isLog}
                onUserLoggedIn={this.handleOnUserLoggedIn} 
             />
+            <div className="footer">
+                <p>&copy; 2019</p>
+            </div>
         </React.Fragment>
     );
   };

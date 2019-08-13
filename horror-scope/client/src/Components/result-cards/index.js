@@ -19,7 +19,7 @@ function AddButtons(props) {
     let status = "";
 
     let addLogged = (
-        <div className="add-full-buttons">
+        <div className="add-buttons">
             <button className="add-watched" style={watchedStyle} onClick={props.onWatched}>Watched</button>
             <button className="add-to-watch" style={wantedStyle} onClick={props.onWanted}>To Watch</button>
         </div> 
@@ -37,7 +37,7 @@ function AddButtons(props) {
         status = addLogged;
     }
     return (
-        <div>
+        <div className="buttons-here">
             {status}   
         </div>
             

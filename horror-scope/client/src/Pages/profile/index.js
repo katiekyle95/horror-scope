@@ -120,6 +120,9 @@ class Profile extends Component {
                     watched={this.state.watchedMovies}
                     wanted={this.state.wantedMovies}
                 />
+                <div className="footer">
+                    <p>&copy; 2019</p>
+                </div>
             </React.Fragment>
         )
     }
