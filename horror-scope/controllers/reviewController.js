@@ -8,7 +8,7 @@ module.exports = {
         try {
             // check first to see if this user has already reviewed this movie
             const movieId = req.body.movieId;
-            const userName = req.res.userName;
+            const userName = req.body.userName;
             const query = {
                 userName: userName,
                 movieId: movieId
@@ -17,7 +17,7 @@ module.exports = {
             const dbmodel = await db.Review.find(query);
             if (dbmodel.length > 0) {
                 // found one, so update it
-                const updateModel = await dbModel[0].update(req.body);
+                const updatedModel = await dbmodel[0].update(req.body);
                 res.json(updatedModel);
             } else {
                 const createdModel = await db.Review.create(req.body);

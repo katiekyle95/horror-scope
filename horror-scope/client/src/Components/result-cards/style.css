@@ -43,7 +43,7 @@
     display: flex;
     margin: 10px;
     margin-top: 15px;
-    margin-bottom: -10px;
+    margin-bottom: 10px;
     align-items: baseline;
 }
 
@@ -124,73 +124,138 @@
     color: #808080;
 }
 
-@media only screen and (max-width: 600px) {
+@media screen and (min-width: 320px) 
+  and (max-width: 480px) {
 
-.result-poster {
-    float: none;
-    width: auto;
-    height: 125px;
-    padding: 10px;
-    margin: 0px auto;
+    .result-poster {
+        float: none;
+        width: auto;
+        height: 125px;
+        padding: 10px;
+        margin: 0px auto;
+    }
+    
+    .card {
+        padding: 0px;
+        width: 90%;
+    }
+    
+    .card-ratings {
+        visibility: hidden;
+        height: 0px;
+    }
+    
+    .card-title {
+        margin: 0px;
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        width: 70%;
+        font-size: 24px;
+    }
+    
+    .card-text {
+        width: 70%;
+    }
+    
+    .movie-overview {
+        visibility: hidden;
+    }
+    
+    p {
+        height: 0px;
+        width: 0px;
+    }
+    
+    .add-buttons {
+        visibility: hidden;
+    }
+    
+    .buttons-here {
+        visibility: hidden;
+        height: 0px;
+        width: 0px;
+    }
+    
+    .spacer {
+        width: 0px;
+        height: 0px;    
+    }
+    
+    .card-text {
+        margin: 0px;
+        width: inherit;
+        background: none;
+    }
+    
+    .card-title h2 {
+        margin: 0px;
+        padding: 0px;
+    }
+    
+    .card a {
+        width: 85%;
+    }
 }
 
-.card {
-    padding: 0px;
+@media screen and (min-width: 480px) 
+    and (max-width: 900px) {
+    .card {
+        width: 100%;
+    }
 }
 
-.card-ratings {
-    visibility: hidden;
-    height: 0px;
+@media screen and (min-device-width: 768px)
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) {
+  
+    .card {
+        width: 100%;
+    }
+
 }
 
-.card-title {
-    margin: 0px;
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
+@media screen and (min-device-width: 800px)
+  and (max-device-width: 1280px) 
+  and (orientation: portrait) {
+  
+    .card {
+        width: 100%;
+    }
+
 }
 
-.movie-overview {
-    visibility: hidden;
+@media screen and (min-device-width: 834px)
+  and (max-device-width: 1112px) 
+  and (orientation: portrait) {
+    
+    .card {
+        width: 100%;
+    }
 }
 
-p {
-    height: 0px;
-    width: 0px;
+@media screen and (min-device-width: 1024px)
+  and (max-device-width: 1366px) 
+  and (orientation: portrait) {
+  
+    .card {
+        width: 100%;
+    }
+
 }
 
-.add-buttons {
-    visibility: hidden;
-}
+@media screen and (min-device-width: 1200px)
+  and (max-device-width: 1600px) 
+  and (orientation: portrait) {
+  
+    .card {
+        width: 100%;
+    }
 
-.buttons-here {
-    visibility: hidden;
-    height: 0px;
-    width: 0px;
-}
-
-.spacer {
-    width: 0px;
-    height: 0px;    
-}
-
-.card-text {
-    margin: 0px;
-    width: inherit;
-    background: none;
-}
-
-.card-title h2 {
-    margin: 0px;
-    padding: 0px;
-}
-
-.card a {
-    width: 85%;
 }
 
 
-}
+
 
 
 

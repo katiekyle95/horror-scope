@@ -26,7 +26,11 @@
     font-size: 12px;
 }
 
-@media only screen and (max-width: 600px) {
+@media screen and (max-aspect-ratio: 3/4) {
+    
+}
+
+@media screen and (max-aspect-ratio: 9/16) {
 
     .results-here {
         width: 100%;

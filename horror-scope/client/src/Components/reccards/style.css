@@ -1,3 +1,8 @@
+.rec {
+    display: flex;
+    justify-content: center;
+}
+
 .card-space {
     height: auto;
     display: flex;
@@ -20,16 +25,57 @@
     font-size: 16px;
     color: black;
     font-family: "roboto";
-    padding-top: 10px;
-    
+    max-width: 100px;
+    display: flex;
+    flex-wrap: wrap;
 }
+
+@media screen and (min-width: 320px) 
+  and (max-width: 480px) {
+
+    .rec {
+        width: 50%;
+    }
+}
+
+@media screen and (min-device-width: 768px)
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) {
+  
+}
+
+@media screen and (min-device-width: 800px)
+  and (max-device-width: 1280px) 
+  and (orientation: portrait) {
+  
+}
+
+@media screen and (min-device-width: 834px)
+  and (max-device-width: 1112px) 
+  and (orientation: portrait) {
+  
+}
+
+@media screen and (min-device-width: 1024px)
+  and (max-device-width: 1366px) 
+  and (orientation: portrait) {
+  
+}
+
+@media screen and (min-device-width: 1200px)
+  and (max-device-width: 1600px) 
+  and (orientation: portrait) {
+  
+}
+
+
 
 @media only screen and (max-width: 600px) {
 
 .card-space {
-    width: 90px;
+    
     align-content: flex-start;
-    margin: 5px 15px;
+    margin: 15px;
 }    
 
 .rec-name {
@@ -37,7 +83,6 @@
     display: flex; 
     flex-wrap: wrap;
     justify-content: center;
-    padding-top: 0px;
 }
 
 }

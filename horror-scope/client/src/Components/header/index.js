@@ -53,11 +53,7 @@ function Header(props) {
             <div className="desktop-nav">
                 <div className="landing-header">
                      <a href="/"><img className="landing-logo" src={Headerimg} /></a>
-                     <div className="social">
-                         <a href="#"><i className="fab fa-twitter"></i></a>
-                         <a href="#"><i className="fab fa-instagram"></i></a>
-                         <a href="#"><i className="fab fa-facebook"></i></a>
-                     </div>
+
                      <br></br>       
                 </div>
                 <div>
@@ -79,29 +75,7 @@ function Header(props) {
         </div>
 
 
-        // <React.Fragment>
-        //     <Nav/>
-        //     <div className="comp-browser">
-        //         <div className="landing-header">
-        //             <a href="/"><img className="landing-logo" src={Headerimg} /></a>
-        //             <div className="social">
-        //                 <a href="#"><i className="fab fa-twitter"></i></a>
-        //                 <a href="#"><i className="fab fa-instagram"></i></a>
-        //                 <a href="#"><i className="fab fa-facebook"></i></a>
-        //             </div>
-        //             <br></br>       
-        //         </div>
-        //         <div className="nav-space">
-        //             <LogIn />
-        //             <button type="button" onClick={props.onSearch} className="nav-button">SEARCH</button>
-        //         </div>
-        //     </div>
-            
-
-
-                
-
-        // </React.Fragment>
+  
     );
 }
 

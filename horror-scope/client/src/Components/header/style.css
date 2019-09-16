@@ -20,22 +20,6 @@
     height: 30px;
   }
   
-  .social {
-    position: absolute;
-    bottom: 20px;
-    left: 85%;
-  }
-  
-  .social a {
-    color: rgba(255, 255, 255, 0.342);
-    font-size: 20px;
-    padding-left: 15px;
-  }
-  
-  .social a:hover {
-    color: white;
-  }
-  
   .nav-space {
     margin: 0px auto;
     width: 80%;

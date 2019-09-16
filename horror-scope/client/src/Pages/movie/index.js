@@ -110,7 +110,7 @@ class Movies extends Component {
     var {movie} = this.state;
     var {userName, isLoggedIn} = this.props;
 
-    if ( movie.revies != undefined )
+    if ( movie.reviews != undefined )
     {
         var { reviews } = movie;
         var userQ = 1;

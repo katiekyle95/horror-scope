@@ -12,12 +12,14 @@ class RecCard extends Component {
         var {title,poster_path} = this.props.movie;
         var posterImg = 'http://image.tmdb.org/t/p/w185' + poster_path;
         return ( 
-                <div className="card-space"> 
-                <a onClick={this.handleMovieClicked}>  
-                    <img className="rec-poster" src={ posterImg }></img>
-                    <br></br>
-                    <span className="rec-name">{title}</span>
-                </a>
+                <div className="rec">
+                    <div className="card-space"> 
+                        <a onClick={this.handleMovieClicked}>  
+                            <img className="rec-poster" src={ posterImg }></img>
+                            <br></br>
+                            <span className="rec-name">{title}</span>
+                        </a>
+                    </div>
                 </div>
                
             
